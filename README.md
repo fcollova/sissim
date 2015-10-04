@@ -3,7 +3,7 @@
 
 
 ## Usage
-Neph: number of rpoch to run
+Neph: number of Epoch to run
 
 G1,G2: Centrality row vectors of two networks
 
