@@ -16,24 +16,20 @@ UnG2 = UnG2';
 # Matrice somma eventi intragruppo
 old_mx = zeros(length(G1),length(G2));
 old_eventlist = [];
-Temp1=0.10
-Temp2=0.15
+Temp1=0.10;
+Temp2=0.15;
+Sim12 = similarity(UnG1, UnG2)
+Sim21 = similarity(UnG2, UnG1)
+
 #--------------------------
 
 
 # Simulation Run
 for eph = 1:100
- [next_mx, next_eventlist] = sis_step( eph, old_mx, old_eventlist,G1, G2, UnG1, UnG2, Sim12, Sim21, Temp1, Temp2)
- old_mx=next_mx
- old_eventlist=next_eventlist
+ [next_mx, next_eventlist] = sis_step( eph, old_mx, old_eventlist,G1, G2, UnG1, UnG2, Sim12, Sim21, Temp1, Temp2);
+ old_mx=next_mx;
+ old_eventlist=next_eventlist;
 endfor
 
 old_mx
 old_eventlist
-  
- #prctile(G1')
- #find (G1>0.5,1);
- #detperc(0.21 ,G1);
- 
- 
- 
