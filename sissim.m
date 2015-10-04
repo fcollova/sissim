@@ -10,20 +10,17 @@ function [mx eventlist] = sissim(Neph, G1,G2, Temp1, Temp2)
  UnG1 = UnG1';
  UnG2 = UnG2';
 
- # Main Simulation
- #Inizializzation ---------
- # Matrice somma eventi intragruppo
+ # Inizializzation ---------
+ # Matrix of total intergroup events  (G1->G2 + G2->G1) rettangular G1 x G2
  old_mx = zeros(length(G1),length(G2));
  old_eventlist = [];
- #Temp1=0.10;
- #Temp2=0.15;
  Sim12 = similarity(UnG1, UnG2)
  Sim21 = similarity(UnG2, UnG1)
+ # End Inizializzation------
 
- #--------------------------
 
-
- # Simulation Run
+# Main Simulation
+# Simulation Runs
  for eph = 1:Neph
   [next_mx, next_eventlist] = sis_step( eph, old_mx, old_eventlist,G1, G2, UnG1, UnG2, Sim12, Sim21, Temp1, Temp2);
   old_mx=next_mx;
