@@ -2,13 +2,18 @@
 
 function [mx eventlist precpty] = sissim(Neph, G1,G2, Temp1, Temp2)
 
- # Compute uniform distribution and regularize
- UnG1 = unifcdf(G1',min(G1),max(G1));
- UnG2 = unifcdf(G2',min(G2),max(G2));
- UnG1(UnG1(:,1)==0,1) = 1/(length(UnG1));
- UnG2(UnG2(:,1)==0,1) = 1/(length(UnG2));
- UnG1 = UnG1';
- UnG2 = UnG2';
+% # Compute uniform distribution and regularize
+% 
+% UnG1 = unifcdf(G1',min(G1),max(G1));
+% UnG2 = unifcdf(G2',min(G2),max(G2));
+% UnG1(UnG1(:,1)==0,1) = 1/(length(UnG1));
+% UnG2(UnG2(:,1)==0,1) = 1/(length(UnG2));
+% UnG1 = UnG1';
+% UnG2 = UnG2';
+%
+
+UnG1=G1;
+UnG2=G2;
 
  # Inizializzation ---------
  
