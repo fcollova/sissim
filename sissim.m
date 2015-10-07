@@ -30,8 +30,9 @@ function [mx eventlist precpty] = sissim(Neph, G1,G2, Temp1, Temp2)
   old_eventlist=next_eventlist;
 
   # -----insert here specific plotting on epoch
-  precpty = [precpty; [eph nrecpty(old_eventlist)]];
-
+  if length(old_eventlist) > 0
+   precpty = [precpty; [eph nrecpty(old_eventlist)]];
+  endif
 
 
 
