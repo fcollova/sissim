@@ -14,10 +14,10 @@ for i = 1:7
  [a b c]=sissim(500,G1,G2,0.19,0.27);
  if length(c) != 0
   plot(c(:,1),c(:,2),sprintf( '%s', plotColor(i) ))
-  line ([238 238], [0 7], 'linestyle', '-', 'color', 'r');
+  line ([238 238], [0 14], 'linestyle', '-', 'color', 'r');
   xlabel ("N. of Epoch");
   ylabel ("Reciprocity");
-  axis ([0 ,1, 0, 7]) 
+  axis ([0 ,1, 0, 14]) 
   axis ("auto x")
   text (230,-0.3, '238')
   text (300, 5, 'N. of run: 7')

@@ -5,14 +5,14 @@ function [next_mx, next_eventlist]=sis_step(eph, old_mx, old_eventlist,G1, G2, U
 
  for i = 1:length(G1)
    if( rand <= Temp1 * UnG1(i))
-     j= Sim12(i,unidrnd(1)); #Changhe the value to have a wider choice
+     j= Sim12(i,unidrnd(2)); #Changhe the value to have a wider choice
      next_mx(i,j) =  next_mx(i,j) + 1;
      next_eventlist = [next_eventlist; [eph 1 i j] ];
    endif 
  endfor
  for j =  1:length(G2)
    if( rand <= Temp2 * UnG2(i))
-     i= Sim21(j,unidrnd(1)); #Changhe the value to have a wider choice
+     i= Sim21(j,unidrnd(2)); #Changhe the value to have a wider choice
      next_mx(i,j) =  next_mx(i,j) + 1;
      next_eventlist = [next_eventlist; [eph 2 j i] ];
    endif 
