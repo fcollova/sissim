@@ -1,6 +1,6 @@
 # Data Value of Netwoks G1 & G2 are Centrality vector of i-th node
 
-function [mx eventlist precpty] = sissim(Neph, G1,G2, Temp1, Temp2)
+function [mx eventlist precpty] = sissim(Neph, R, G1,G2, Temp1, Temp2)
 
 % # Compute uniform distribution and regularize
 % 
@@ -30,7 +30,7 @@ UnG2=G2;
 # Main Simulation
 # Simulation Runs
  for eph = 1:Neph
-  [next_mx, next_eventlist] = sis_step( eph, old_mx, old_eventlist,G1, G2, UnG1, UnG2, Sim12, Sim21, Temp1, Temp2);
+  [next_mx, next_eventlist] = sis_step( eph, R, old_mx, old_eventlist,G1, G2, UnG1, UnG2, Sim12, Sim21, Temp1, Temp2);
   old_mx=next_mx;
   old_eventlist=next_eventlist;
 
