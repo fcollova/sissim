@@ -11,7 +11,7 @@ function [next_mx, next_eventlist]=sis_step(eph,R, old_mx, old_eventlist,G1, G2,
    endif 
  endfor
  for j =  1:length(G2)
-   if( rand <= Temp2 * UnG2(i))
+   if( rand <= Temp2 * UnG2(j))
      i= Sim21(j,unidrnd(R)); #Changhe the value to have a wider choice
      next_mx(i,j) =  next_mx(i,j) + 1;
      next_eventlist = [next_eventlist; [eph 2 j i] ];

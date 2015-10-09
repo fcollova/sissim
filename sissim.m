@@ -20,8 +20,8 @@ UnG2=G2;
  # Matrix of total intergroup events  (G1->G2 + G2->G1) rettangular G1 x G2
  old_mx = zeros(length(G1),length(G2));
  old_eventlist = [];
- Sim12 = similarity(UnG1, UnG2)
- Sim21 = similarity(UnG2, UnG1)
+ Sim12 = similarity(UnG1, UnG2);
+ Sim21 = similarity(UnG2, UnG1);
  precpty = [];
  
  # End Inizializzation------
