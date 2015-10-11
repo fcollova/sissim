@@ -1,6 +1,6 @@
 # Data Value of Netwoks G1 & G2 are Centrality vector of i-th node
 
-function [mx eventlist precpty] = sissim(Neph, R, G1,G2, Temp1, Temp2)
+function [G1mx, G2mx, eventlist, precpty] = sissim(Neph, R, G1,G2, Temp1, Temp2)
 
 % # Compute uniform distribution and regularize
 % 
@@ -17,8 +17,10 @@ UnG2=G2;
 
  # Inizializzation ---------
  
- # Matrix of total intergroup events  (G1->G2 + G2->G1) rettangular G1 x G2
- old_mx = zeros(length(G1),length(G2));
+ # 2 Matrix of intergroup events  G1old_mx (G1->G2)  G2old_mx (G2->G1) rettangular
+ G1old_mx = zeros(length(G1),length(G2));
+ G2old_mx = zeros(length(G2),length(G1));
+ 
  old_eventlist = [];
  Sim12 = similarity(UnG1, UnG2);
  Sim21 = similarity(UnG2, UnG1);
@@ -30,8 +32,9 @@ UnG2=G2;
 # Main Simulation
 # Simulation Runs
  for eph = 1:Neph
-  [next_mx, next_eventlist] = sis_step( eph, R, old_mx, old_eventlist,G1, G2, UnG1, UnG2, Sim12, Sim21, Temp1, Temp2);
-  old_mx=next_mx;
+  [G1next_mx, G2next_mx, next_eventlist] = sis_step( eph, R, G1old_mx, G2old_mx, old_eventlist,G1, G2, UnG1, UnG2, Sim12, Sim21, Temp1, Temp2);
+  G1old_mx = G1next_mx;
+  G2old_mx = G2next_mx;
   old_eventlist=next_eventlist;
 
   # -----insert here specific plotting on epoch
@@ -43,6 +46,7 @@ UnG2=G2;
 
  endfor
 
- mx=old_mx;
+ G1mx = G1old_mx;
+ G2mx = G2old_mx;
  eventlist=old_eventlist;
 endfunction

@@ -17,21 +17,25 @@ plotColor = 'brgkmcy';
 % ‘w’	White
 hold on
 
-for i = 1:7
- [a1 a2 b c]=sissim(2000, 3, G1,G2,0.19,0.27);
- if length(c) != 0
-  plot(c(:,1),c(:,2),sprintf( '%s', plotColor(i) ), 'LineWidth',2)
-  #line ([238 238], [0 20], 'linestyle', '-', 'color', 'r');
-  xlabel ("N. of Epoch");
-  ylabel ("N. of Reciprocal");
-  axis ([0 ,1, 0, 80]) 
-  axis ("auto x")
-  axis("tic[xy]")
-  #text (230,-0.3, '238')
-  text (100, 5, 'R = 9')
-  #legend ('','238', 'location', 'eastoutside');
- endif
-endfor
+[a1 a2 b c]=sissim(2000, 3, G1,G2,0.19,0.27);
+
+
+% if length(c) != 0
+%  test  = (a1.*a2')>0;
+%  bins  = min(a1.*test,a2'.*test);
+%  n_recip = sum(sum(bins));
+%  plot(c(:,1),c(:,2),sprintf( '%s', plotColor(i) ), 'LineWidth',2)
+%  #line ([238 238], [0 20], 'linestyle', '-', 'color', 'r');
+%  xlabel ("N. of Epoch");
+%  ylabel ("N. of Reciprocal");
+%  axis ([0 ,1, 0, 80]) 
+%  axis ("auto x")
+%  axis("tic[xy]")
+%  #text (230,-0.3, '238')
+%  text (100, 5, 'R = 9')
+%  #legend ('','238', 'location', 'eastoutside');
+% endif
+%endfor
 %filename='reci1.csv'; 
 %fid=fopen(filename,'r'); %open file for read
 %formatSpec='%d %d';
@@ -39,8 +43,8 @@ endfor
 %A=fscanf(fid,formatSpec,sizeA )' ; 
 %fclose(fid); %close file
 %plot(A(:,1),A(:,2), '.', 'color', 'k', "markersize", 6 )
-set (gca, 'xtick', 500:500:5000)
-set (gca, 'ytick', 10:10:80)
+%set (gca, 'xtick', 500:500:5000)
+%set (gca, 'ytick', 10:10:80)
 
 format long
 test  = (a1.*a2')>0;
