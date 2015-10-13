@@ -20,17 +20,20 @@ plotColor = 'brgkmcy';
 % ‘w’	White
 %hold on
 
-cum1 = zeros(m,n);
-cum2 = zeros(n, m);
+CLout = zeros(m,n);
+CLin = zeros(n, m);
 SpRplus = zeros(m,n);
 SpRmin = zeros(m,n);
+CSLout=0;
+CSLin=0;
 
 Temp1 = 0.19;
 Temp2 = 0.27;
-Nrun = 1000;
+Nave = 10
+Nrun = 500;
 
-for i = 1:10
- [a1 a2 b c]=sissim(Nrun, 1, G1, G2, Temp1, Temp2);
+for i = 1:Nave
+ [Lout Lin b c]=sissim(Nrun, 1, G1, G2, Temp1, Temp2);
 % if length(c) != 0
 %  plot(c(:,1),c(:,2),sprintf( '%s', plotColor(i) ), 'LineWidth',2)
 %  #line ([238 238], [0 20], 'linestyle', '-', 'color', 'r');
@@ -43,11 +46,12 @@ for i = 1:10
 %  text (100, 5, 'R = 9')
 %  #legend ('','238', 'location', 'eastoutside');
 % endif
- cum1 = cum1 + a1;
- cum2 = cum2 + a2;
+ CLout = CLout + Lout;
+ CLin  = CLin +  Lin;
  SpRplus = SpRplus +(cum1 + cum2');
  SpRmin = SpRmin + (cum1 - cum2');
- 
+ CSLout = CSLout + sum(sum(Lout));
+ CSLin  = CSLin + sum(sum(Lin));
  
  #SpRapp = SpRplus./SpRmin';
  
@@ -59,23 +63,32 @@ FijG1=simFij(SimG1);
 SimG2=similarity(G2,G1);
 FijG2=simFij(SimG2);
 
-# Lij G1 sperimentale e teorica
-SpLG1 = cum1/10
+# LOut G1->G2 Experimental and Theoric
+SpLout = CLout/Nave
 Th_npG1 = Nrun * Temp1 * G1;
 ThG1 = Th_npG1'.*FijG1
 
-# Lij G2 sperimntale e teorica 
-SpLG2 = cum2/10
+# Lin  G2->G1 Experimental and Theoric 
+SpLin = CLin/Nave
 Th_npG2 = Nrun * Temp2 * G2;
 ThG2 = Th_npG2'.*FijG2
 
-# R+ sperimentale e teorica
-SpRplus/10
-ThRplus = ThG1 + ThG2'
+# Sum Lout Experimental and Theoric
+SpCSLout = CSLout/Nave
+ThCSLout = Nrun * Temp1 * sum(G1)
+
+# Sum Lin Experimental and Theoric
+SpCSLin = CSLin/Nave
+ThCSLout = Nrun * Temp2 * sum(G2)
+
+
+# R+ Experimental and Theoric
+SpRplus = SpCSLout + SpCSLin
+ThRplus = (Nrun * Temp1 * sum(G1)) + (Nrun * Temp2 * sum(G2))
 
 # R- Sperimentale e teorica
-SpRmin/10
-ThRmin  =  ThG1 - ThG2'
+SpRmin = SpCSLout - SpCSLin
+ThRmin = (Nrun * Temp1 * sum(G1)) - (Nrun * Temp2 * sum(G2))
 
 %SpRapp = SpRplus./SpRmin';
 %SpRapp/10

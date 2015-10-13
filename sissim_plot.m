@@ -1,6 +1,6 @@
 # Data Value of Netwoks G1 & G2 are Centrality vector of i-th node
 
-function [G1mx, G2mx, eventlist, precpty] = sissim(Neph, R, G1,G2, Temp1, Temp2)
+function [Loutmx, Linmx, eventlist, precpty] = sissim(Neph, R, G1,G2, Temp1, Temp2)
 
 % # Compute uniform distribution and regularize
 % 
@@ -18,8 +18,8 @@ UnG2=G2;
  # Inizializzation ---------
  
  # 2 Matrix of intergroup events  G1old_mx (G1->G2)  G2old_mx (G2->G1) rettangular
- G1old_mx = zeros(length(G1),length(G2));
- G2old_mx = zeros(length(G2),length(G1));
+ Loutold_mx = zeros(length(G1),length(G2));
+ Linold_mx = zeros(length(G2),length(G1));
  
  old_eventlist = [];
  Sim12 = similarity(UnG1, UnG2);
@@ -32,31 +32,21 @@ UnG2=G2;
 # Main Simulation
 # Simulation Runs
  for eph = 1:Neph
-  [G1next_mx, G2next_mx, next_eventlist] = sis_step( eph, R, G1old_mx, G2old_mx, old_eventlist,G1, G2, UnG1, UnG2, Sim12, Sim21, Temp1, Temp2);
-  G1old_mx = G1next_mx;
-  G2old_mx = G2next_mx;
+  [Loutnext_mx, Linnext_mx, next_eventlist] = sis_step_plot( eph, R, Linold_mx, Loutold_mx, old_eventlist,G1, G2, UnG1, UnG2, Sim12, Sim21, Temp1, Temp2);
+  Loutold_mx = Loutnext_mx;
+  Linold_mx = Linnext_mx;
   old_eventlist=next_eventlist;
 
   # -----insert here specific plotting on epoch
   if length(old_eventlist) > 0
-
-   Lout_sum = sum(sum(G1old_mx));
-   Lin_sum  = sum(sum(G2old_mx));
-   Rplus = Lout_sum + Lin_sum;
-   Rmin  = Lout_sum - Lin_sum;
-   Rqt = Rmin/Rplus;
-   RplusonT = Rplus/eph;
-   RminonT =  Rmin/eph;
-   RC = sum(sum(min(G1old_mx, G2old_mx')));
-
-   #Return plot variable
-   precpty = [precpty; [eph nrecpty(old_eventlist) Rplus Rmin Rqt RplusonT RminonT RC]];
-   
+   precpty = [precpty; [eph nrecpty(old_eventlist)]];
   endif
 
-  endfor
 
- G1mx = G1old_mx;
- G2mx = G2old_mx;
+
+ endfor
+
+ Loutmx = Loutold_mx;
+ Linmx = Linold_mx;
  eventlist=old_eventlist;
 endfunction
