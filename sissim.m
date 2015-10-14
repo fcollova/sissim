@@ -44,13 +44,15 @@ UnG2=G2;
    Lin_sum  = sum(sum(G2old_mx));
    Rplus = Lout_sum + Lin_sum;
    Rmin  = Lout_sum - Lin_sum;
+   RplusT = Rplus/eph;
+   RminT  = Rmin/eph;
    Rqt = Rmin/Rplus;
    RplusonT = Rplus/eph;
    RminonT =  Rmin/eph;
-   RC = sum(sum(min(G1old_mx, G2old_mx')));
+   RConT = sum(sum(min(G1old_mx, G2old_mx')))/eph;
 
    #Return plot variable
-   precpty = [precpty; [eph nrecpty(old_eventlist) Rplus Rmin Rqt RplusonT RminonT RC]];
+   precpty = [precpty; [eph nrecpty(old_eventlist) Rplus Rmin RplusT RminT Rqt (Rqt+1)/(Rqt-1) RplusonT RminonT RConT]];
    
   endif
 

@@ -22,18 +22,20 @@ plotColor = 'brgkmcy';
 
 CLout = zeros(m,n);
 CLin = zeros(n, m);
+
 SpRplus = zeros(m,n);
 SpRmin = zeros(m,n);
 CSLout=0;
 CSLin=0;
-
 Temp1 = 0.19;
 Temp2 = 0.27;
 Nave = 10
 Nrun = 500;
 
 for i = 1:Nave
- [Lout Lin b c]=sissim(Nrun, 1, G1, G2, Temp1, Temp2);
+ [Lout Lin b c]=sissim(Nrun, 3, G1, G2, Temp1, Temp2);
+ 
+ 
 % if length(c) != 0
 %  plot(c(:,1),c(:,2),sprintf( '%s', plotColor(i) ), 'LineWidth',2)
 %  #line ([238 238], [0 20], 'linestyle', '-', 'color', 'r');
@@ -48,8 +50,8 @@ for i = 1:Nave
 % endif
  CLout = CLout + Lout;
  CLin  = CLin +  Lin;
- SpRplus = SpRplus +(cum1 + cum2');
- SpRmin = SpRmin + (cum1 - cum2');
+ SpRplus = SpRplus + (CLout + CLin');
+ SpRmin = SpRmin + (CLout - CLin');
  CSLout = CSLout + sum(sum(Lout));
  CSLin  = CSLin + sum(sum(Lin));
  
