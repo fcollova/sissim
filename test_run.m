@@ -24,7 +24,7 @@ for i = 1:7
   #line ([238 238], [0 20], 'linestyle', '-', 'color', 'r');
   xlabel ("N. of Epoch");
   ylabel ("N. of Reciprocal");
-  axis ([0 ,1, 0, 80]) 
+  axis ([0 ,1, 0, 16]) 
   axis ("auto x")
   axis("tic[xy]")
   #text (230,-0.3, '238')
