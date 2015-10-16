@@ -7,7 +7,7 @@
 G1= [0.692 0.462 0.000 0.615 0.000 0.077 0.231 0.000 0.000 0.000 0.769 0.538 0.538 0.615]
 G2= [0.000 0.000 0.000 0.000 0.000 0.385 0.077 0.000 0.077 0.538 0.077 0.231 0.308 0.231]
 
-plotColor = 'brgkmcy';
+plotColor = 'brgkmck';
 % ‘k’	blacK
 % ‘r’	Red
 % ‘g’	Green
@@ -16,35 +16,56 @@ plotColor = 'brgkmcy';
 % ‘c’	Cyan
 % ‘w’	White
 hold on
+Temp1 = 0.19/1.05;
+Temp2 = 0.27/1.05;
+Nrun = 1000
 
 for i = 1:7
- [a1 a2 b c]=sissim(2000, 3, G1,G2,0.19,0.27);
+ [a1 a2 b c]=sissim(Nrun, 3, G1, G2, Temp1, Temp2);
  if length(c) != 0
-  plot(c(:,1),c(:,2),sprintf( '%s', plotColor(i) ), 'LineWidth',2)
+  plot(c(:,1),c(:,2),sprintf( '%s', plotColor(i) ), 'LineWidth',1)
   #line ([238 238], [0 20], 'linestyle', '-', 'color', 'r');
-  xlabel ("N. of Epoch");
-  ylabel ("N. of Reciprocal");
   axis ([0 ,1, 0, 16]) 
   axis ("auto x")
   axis("tic[xy]")
   #text (230,-0.3, '238')
-  text (100, 5, 'R = 9')
-  #legend ('','238', 'location', 'eastoutside');
+  text (200, 30, '(k = 3)')
+  #h = legend ('show');
  endif
 endfor
-%filename='reci1.csv'; 
-%fid=fopen(filename,'r'); %open file for read
-%formatSpec='%d %d';
-%sizeA = [2 Inf];
-%A=fscanf(fid,formatSpec,sizeA )' ; 
-%fclose(fid); %close file
-%plot(A(:,1),A(:,2), '.', 'color', 'k', "markersize", 6 )
-set (gca, 'xtick', 500:500:5000)
-set (gca, 'ytick', 10:10:80)
 
-format long
-test  = (a1.*a2')>0;
-bins  = min(a1.*test,a2'.*test);
-bins = bins ./ sum(sum(bins))
-entropy = nansum(-log2(bins(:)).*bins(:))
+
+filename='reci1.csv'; 
+fid=fopen(filename,'r'); %open file for read
+formatSpec='%d %d';
+sizeA = [2 Inf];
+A=fscanf(fid,formatSpec,sizeA )' ; 
+fclose(fid); %close file
+#plot(A(:,1),A(:,2), '.', 'color', 'k', "markersize", 4 )
+plot(A(:,1),A(:,2),':', 'color', 'k', "LineWidth", 4 )
+
+# Plot settings
+axis ([0 ,1, 0, 16]) 
+axis ("auto x")
+axis("tic[xy]")
+
+set (gca, 'xtick', 70:70:1000) #7 epoch = 1 day
+set (gca, 'ytick', 1:1:16)
+set (gca, 'xticklabel', {'10', '20', '30', '40', '50', '60', '70', '80', '90', '100', '120', '130', '140', '150'})
+
+%xticklabel=['10';'20';'30';'40';'50';'60';'70'];
+%set(gca,'xticklabel',xticklabel);
+
+
+#text (400, 8, 'k = 3')
+xlabel ("Days");
+ylabel ("N. of Couple Reciprocated");
+
+
+
+%format long
+%test  = (a1.*a2')>0;
+%bins  = min(a1.*test,a2'.*test);
+%bins = bins ./ sum(sum(bins))
+%entropy = nansum(-log2(bins(:)).*bins(:))
  

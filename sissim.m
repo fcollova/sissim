@@ -49,7 +49,7 @@ UnG2=G2;
    Rqt = Rmin/Rplus;
    RplusonT = Rplus/eph;
    RminonT =  Rmin/eph;
-   RConT = sum(sum(min(G1old_mx, G2old_mx')))/eph;
+   RConT = sum(sum(min(G1old_mx, G2old_mx')));
 
    #Return plot variable
    precpty = [precpty; [eph nrecpty(old_eventlist) Rplus Rmin RplusT RminT Rqt (Rqt+1)/(Rqt-1) RplusonT RminonT RConT]];

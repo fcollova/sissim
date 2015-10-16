@@ -45,22 +45,22 @@ Nrun = 500;
 
  if length(c) != 0
   # Dati della simulazione 
-  # 1:eph
-  # 2:nrecpty(old_eventlist)
-  # 3:Rplus
-  # 4:Rmin
-  # 5:RplusT
-  # 6:RminT
-  # 7:Rqt
-  # 8:(Rqt+1)/(Rqt-1)
-  # 9:RplusonT
+  # 1 :eph
+  # 2 :nrecpty(old_eventlist)
+  # 3 :Rplus
+  # 4 :Rmin
+  # 5 :RplusT
+  # 6 :RminT
+  # 7 :Rqt
+  # 8 :(Rqt+1)/(Rqt-1)
+  # 9 :RplusonT
   # 10:RminonT
   # 11:RConT
   
   #plot(c(:,1),c(:,5)) # ,sprintf( '%s', plotColor(i) ), 'LineWidth',2)
-  plot(c(:,1),c(:,5))
-  plot(c(:,1),c(:,6))
-  #plot(c(:,1),c(:,8))
+  plot(c(:,1),c(:,11))
+  #plot(c(:,1),c(:,6))
+  #plot(c(:,1),c(:,11))
 
   
   #line ([238 238], [0 20], 'linestyle', '-', 'color', 'r');
@@ -91,8 +91,9 @@ ThG2 = Th_npG2'.*FijG2
 Qpul1onQmin1 = (Temp1*sum(G1))/(Temp2*sum(G2))
 
 
-# epoch G12 G21 G-RcTot
-filename='EPOCH-EVENT-cumulativi.csv'; 
+# Plot dei dati sperimentali G1 e G2
+# Dati in A: epoch CumG12(L->) CumG21(L<-) R+ R-
+filename='epoch-cumG12-G21-Rtot.csv'; 
 fid=fopen(filename,'r'); %open file for read
 formatSpec='%d %d %d %d %d';
 sizeA = [5 Inf];
@@ -104,8 +105,8 @@ ARplusT = ARplus./A(:,1);
 ARminT  = ARmin./A(:,1);
 A = [A ARplus ARmin ARplusT ARminT];
 
-plot(A(:,1),A(:,8), '.', 'color', 'r', "markersize", 2 )
-plot(A(:,1),A(:,9), '.', 'color', 'g', "markersize", 2 )
+#plot(A(:,1),A(:,8), '.', 'color', 'r', "markersize", 2 )
+plot(A(:,1),A(:,4), '.', 'color', 'g', "markersize", 2 )
 
 %set (gca, 'xtick', 500:500:5000)
 %set (gca, 'ytick', 10:10:80)

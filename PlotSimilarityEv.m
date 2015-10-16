@@ -68,7 +68,7 @@ hold on
 
 Val12=reshape(Sim12,1,m*n);
 #Val21=reshape(Sim21,1,m*n);
-#Val12=Val12(Val12!=0);
+Val12=Val12(Val12!=0);
 #Val21=Val21(Val21!=0);
 hist(Val12',20)
 #hist(Val21,20)
