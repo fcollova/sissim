@@ -16,8 +16,8 @@ plotColor = 'brgkmck';
 % ‘c’	Cyan
 % ‘w’	White
 hold on
-Temp1 = 0.19/1.05;
-Temp2 = 0.27/1.05;
+Temp1 = 0.19;
+Temp2 = 0.27;
 Nrun = 1000
 
 for i = 1:7
