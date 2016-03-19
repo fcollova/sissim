@@ -16,20 +16,23 @@ plotColor = 'brgkmck';
 % ‘c’	Cyan
 % ‘w’	White
 hold on
-Temp1 = 0.19;
-Temp2 = 0.27;
+#Temp1 = 0.19;
+#Temp2 = 0.27;
+
+Temp1 = 0.15;
+Temp2 = 0.25;
 Nrun = 1000
 
 for i = 1:7
  [a1 a2 b c]=sissim(Nrun, 3, G1, G2, Temp1, Temp2);
  if length(c) != 0
   plot(c(:,1),c(:,2),sprintf( '%s', plotColor(i) ), 'LineWidth',1)
-  #line ([238 238], [0 20], 'linestyle', '-', 'color', 'r');
+  line ([423 423], [0 20], 'linestyle', '-', 'color', 'r');
   axis ([0 ,1, 0, 16]) 
   axis ("auto x")
   axis("tic[xy]")
   #text (230,-0.3, '238')
-  text (200, 30, '(k = 3)')
+  text (300, 10, '(k = 3)')
   #h = legend ('show');
  endif
 endfor
