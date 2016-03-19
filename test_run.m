@@ -1,3 +1,10 @@
+set (0, "defaultaxesfontname", "Helvetica") 
+set (0, "defaultaxesfontsize", 16) 
+set (0, "defaulttextfontname", "Helvetica") 
+set (0, "defaulttextfontsize", 16) 
+
+
+
 % G1 = [0.25 0.9 0.99 0.4 0.5 0.87 0.95];
 % G2 = [0.3 0.2 0.9 0.84 0.5 0.6 0.95 0.67 0.12];
 %G1 = [.7 .9 .8 0.4]
@@ -62,7 +69,7 @@ set (gca, 'xticklabel', {'10', '20', '30', '40', '50', '60', '70', '80', '90', '
 
 #text (400, 8, 'k = 3')
 xlabel ("Days");
-ylabel ("N. of Couple Reciprocated");
+ylabel ("N. of Couples Reciprocated");
 
 
 

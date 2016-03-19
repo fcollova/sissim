@@ -1,5 +1,10 @@
+set (0, "defaultaxesfontname", "Helvetica") 
+set (0, "defaultaxesfontsize", 16) 
+set (0, "defaulttextfontname", "Helvetica") 
+set (0, "defaulttextfontsize", 16) 
+
 #-------------------21------------------
-filename='eventi_G12.csv'; 
+filename='eventi_G12.csv';
 fid=fopen(filename,'r'); %open file for read
 formatSpec='%d %d';
 sizeA = [2 Inf];
@@ -48,8 +53,8 @@ endfor
 B21 =[B Simv'];
 
 plot(B21(:,3), '.', 'color', 'b', "markersize", 6 )
-xlabel ("Sequence of Events");
-ylabel ("Similarity");
+xlabel ("Sequence of Events",'FontSize', 16);
+ylabel ("Similarity",'FontSize', 16);
   
 hold off
 input ("Pick a number, any number! ")
@@ -58,8 +63,8 @@ input ("Pick a number, any number! ")
 hold on
 PP = [B12(:,3)' B21(:,3)'];
 hist(PP ,20)
-xlabel ("Similarity Value");
-ylabel ("Freq. of Intergroup Events");
+xlabel ("Similarity Value",'FontSize', 16);
+ylabel ("Freq. of Intergroup Events",'FontSize', 16);
 
 hold off
 
@@ -72,5 +77,5 @@ Val12=Val12(Val12!=0);
 #Val21=Val21(Val21!=0);
 hist(Val12',20)
 #hist(Val21,20)
-xlabel ("Similarity Value");
-ylabel ("Feq. of Similarity value");
+xlabel ("Similarity Value",'FontSize', 16);
+ylabel ("Feq. of Similarity value",'FontSize', 16);
