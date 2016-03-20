@@ -30,7 +30,7 @@ endfor
 
 B12 =[B Simv'];
 hold on
-plot(B12(:,3), '.', 'color', 'r', "markersize", 6 )
+plot(B12(:,3), '.', 'color', 'r', "markersize", 8 )
 
 #-------------------21------------------
 
@@ -52,10 +52,13 @@ endfor
 
 B21 =[B Simv'];
 
-plot(B21(:,3), '.', 'color', 'b', "markersize", 6 )
+plot(B21(:,3), '.', 'color', 'b', "markersize", 8 )
 xlabel ("Sequence of Events",'FontSize', 16);
 ylabel ("Similarity",'FontSize', 16);
-  
+h = legend ("From G2 to G1", "From G1 to G2");
+legend (h, 'location', 'southeast');
+
+
 hold off
 input ("Pick a number, any number! ")
 
