@@ -1,3 +1,4 @@
+pkg load nan
 set (0, "defaultaxesfontname", "Helvetica") 
 set (0, "defaultaxesfontsize", 16) 
 set (0, "defaulttextfontname", "Helvetica") 
